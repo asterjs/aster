@@ -1,0 +1,29 @@
+{
+  "name": "aster",
+  "version": "0.1.0",
+  "description": "Centralized aster API.",
+  "author": "Ingvar Stepanyan <me@rreverser.com> (https://github.com/RReverser)",
+  "repository": "asterjs/aster",
+  "license": "MIT",
+  "keywords": [
+    "ast",
+    "javascript",
+    "transform",
+    "modify"
+  ],
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "dependencies": {
+    "aster-dest": "0.0.1",
+    "aster-runner": "0.0.2",
+    "aster-src": "0.0.4",
+    "aster-watch": "0.0.2"
+  },
+  "devDependencies": {
+    "mocha": "*",
+    "chai": "*",
+    "rx": "^2.2.0"
+  }
+}
