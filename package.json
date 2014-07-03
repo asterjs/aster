@@ -12,9 +12,6 @@
     "modify"
   ],
   "main": "index.js",
-  "scripts": {
-    "test": "mocha"
-  },
   "dependencies": {
     "aster-dest": "0.0.1",
     "aster-runner": "0.0.2",
