@@ -20,7 +20,12 @@ Think of aster for JS as of [rework](https://github.com/reworkcss/rework) for CS
 
 aster doesn't try to fight with your favorite build system. It has only one specific area that it does well - and it's code processing. Everything else (CSS, images, publishing to CDN, etc.) is left for more generic builders, and you can use them together.
 
-Currently, there is only [Grunt plugin](https://github.com/asterjs/grunt-aster) and [Gulp plugin] is coming, but you can define aster pipeline as custom task in any existing build system since aster uses [RxJS](http://reactive-extensions.github.io/RxJS/) under the hood which is completely interoperable with events, streams, promises, callbacks and other asynchronous primitives and patterns.
+Currently there are following bindings:
+ * [grunt-aster](https://github.com/asterjs/grunt-aster) - binding for [Grunt](http://gruntjs.com/) JavaScript Task Runner.
+ * [gulp-aster](https://github.com/asterjs/gulp-aster) - binding for [Gulp](http://gulpjs.com/) streaming build system.
+ * ...more to come!
+
+Also, you can define aster pipeline as custom task in any existing build system since aster uses [RxJS](http://reactive-extensions.github.io/RxJS/) which is completely interoperable with events, streams, promises, callbacks and any other asynchronous primitives and patterns.
 
 ## API
 
