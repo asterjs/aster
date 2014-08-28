@@ -1,0 +1,118 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>aster by asterjs</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1 class="header">aster</h1>
+        <p class="header">AST-based builder for JavaScript</p>
+
+        <ul>
+          <li class="download"><a class="buttons" href="https://github.com/asterjs/aster/zipball/master">Download ZIP</a></li>
+          <li class="download"><a class="buttons" href="https://github.com/asterjs/aster/tarball/master">Download TAR</a></li>
+          <li><a class="buttons github" href="https://github.com/asterjs/aster">View On GitHub</a></li>
+        </ul>
+
+        <p class="header">This project is maintained by <a class="header name" href="https://github.com/asterjs">asterjs</a></p>
+
+
+      </header>
+      <section>
+        <p><a href="https://npmjs.org/package/aster"><img src="https://badge.fury.io/js/aster.png" alt="NPM version"></a>
+<a href="http://travis-ci.org/asterjs/aster"><img src="https://secure.travis-ci.org/asterjs/aster.png?branch=master" alt="Build Status"></a></p>
+
+<p align="center">
+  <img src="https://avatars2.githubusercontent.com/u/6579498?s=300"></p>
+
+<h2>
+<a name="whats-that" class="anchor" href="#whats-that"><span class="octicon octicon-link"></span></a>What's that</h2>
+
+<p>aster is reactive builder specialized for code processing and transformations. It's built with debugging in mind and makes building JavaScript code more reliable and faster.</p>
+
+<h2>
+<a name="why-one-more" class="anchor" href="#why-one-more"><span class="octicon octicon-link"></span></a>Why one more</h2>
+
+<p>Source maps are a great invention that is meant to simplify life by allowing developers to debug the original code (the one that they actually write, whatever language it is) on production.</p>
+
+<p>However, using them is pretty hard in any of existing build systems whenever you have at least one plugin in your build pipeline - and you most likely do - that doesn't support emitting them or even consuming from previous step; some plugins even treat code as simple strings discarding all it's inner logic and structure.</p>
+
+<p>Your code isn't just a string. It has a soul and rich inner world and aster is built to treat it like that. As result, it provides complex yet easy and fast transformations that are transparent for browser debugger out of the box.</p>
+
+<p>You can think of aster for JS as of <a href="https://github.com/reworkcss/rework">rework</a> for CSS.</p>
+
+<h2>
+<a name="but-i-like-x-builder-should-i-throw-it-out" class="anchor" href="#but-i-like-x-builder-should-i-throw-it-out"><span class="octicon octicon-link"></span></a>But I like X builder! Should I throw it out?</h2>
+
+<p>Definitely no! aster doesn't try to fight your favorite build system. It has only one specific area that it's exceptionally good at - code processing. Everything else (CSS, images, publishing to CDN, etc.) is left for generic builders, and you can use them together.</p>
+
+<p>Currently there are following bindings:</p>
+
+<ul>
+<li>
+<a href="https://github.com/asterjs/grunt-aster">grunt-aster</a> - binding for <a href="http://gruntjs.com/">Grunt</a> JavaScript Task Runner.</li>
+<li>
+<a href="https://github.com/asterjs/gulp-aster">gulp-aster</a> - binding for <a href="http://gulpjs.com/">Gulp</a> streaming build system.</li>
+<li>...more to come!</li>
+</ul><p>If you wish, you can define aster pipeline as custom task in any existing build system on your own since aster uses <a href="http://reactive-extensions.github.io/RxJS/">RxJS</a> under the hood, which is interoperable with events, streams, promises, callbacks and any other asynchronous primitives and patterns out of the box.</p>
+
+<h2>
+<a name="api" class="anchor" href="#api"><span class="octicon octicon-link"></span></a>API</h2>
+
+<p>aster is completely modular and main package is just a centralized API wrapper for core parts published as separate modules (check out their documentations for details):</p>
+
+<ul>
+<li>
+<a href="https://github.com/asterjs/aster-src">aster.src</a> - Single-pass source files reader.</li>
+<li>
+<a href="https://github.com/asterjs/aster-watch">aster.watch</a> - Continuous source files reader.</li>
+<li>
+<a href="https://github.com/asterjs/aster-dest">aster.dest</a> - File writer.</li>
+<li>
+<a href="https://github.com/asterjs/aster-runner">aster.runner</a> - Build pipeline runner with built-in logger.</li>
+</ul><h2>
+<a name="usage" class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>Usage</h2>
+
+<p>First, install <code>aster</code> as a development dependency:</p>
+
+<pre lang="shell"><code>npm install --save-dev aster
+</code></pre>
+
+<p>Then, create build script and use it:</p>
+
+<div class="highlight highlight-javascript"><pre><span class="kd">var</span> <span class="nx">aster</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'aster'</span><span class="p">);</span>
+
+<span class="nx">aster</span><span class="p">.</span><span class="nx">src</span><span class="p">(</span><span class="s1">'src/**/*.js'</span><span class="p">)</span>
+<span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">plugin1</span><span class="p">(</span><span class="cm">/* ... */</span><span class="p">))</span>
+<span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">plugin2</span><span class="p">(</span><span class="cm">/* ... */</span><span class="p">))</span>
+<span class="c1">// ...</span>
+<span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">aster</span><span class="p">.</span><span class="nx">dest</span><span class="p">(</span><span class="s1">'dist'</span><span class="p">))</span>
+<span class="p">.</span><span class="nx">subscribe</span><span class="p">(</span><span class="nx">aster</span><span class="p">.</span><span class="nx">runner</span><span class="p">);</span>
+</pre></div>
+
+<p>aster doesn't provide task runner - npm is already good one, and we don't want to create one more bicycle. You can simply define every needed task as separate script, or use aster as part of exising builder as mentioned before.</p>
+
+<h2>
+<a name="license" class="anchor" href="#license"><span class="octicon octicon-link"></span></a>License</h2>
+
+<p><a href="http://en.wikipedia.org/wiki/MIT_License">MIT License</a></p>
+      </section>
+      <footer>
+        <p><small>Hosted on <a href="http://pages.github.com">GitHub Pages</a> using the Dinky theme</small></p>
+      </footer>
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+		
+  </body>
+</html>
