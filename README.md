@@ -22,6 +22,8 @@ Your code isn't just a string. It has a soul and rich inner world and aster is b
 
 You can think of aster for JS as of [rework](https://github.com/reworkcss/rework) for CSS.
 
+You may also want to check out [presentation at SlideShare](http://www.slideshare.net/RReverser/speaker-presentation2).
+
 ## But I like X builder! Should I throw it out?
 
 Definitely no! aster doesn't try to fight your favorite build system. It has only one specific area that it's exceptionally good at - code processing. Everything else (CSS, images, publishing to CDN, etc.) is left for generic builders, and you can use them together.
