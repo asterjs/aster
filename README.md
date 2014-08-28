@@ -51,16 +51,22 @@ First, install `aster` as a development dependency:
 npm install --save-dev aster
 ```
 
-Then, create build script and use it:
+Then, create build script and use it. Example:
 
 ```javascript
 var aster = require('aster');
 
-aster.src('src/**/*.js')
-.map(plugin1(/* ... */))
-.map(plugin2(/* ... */))
-// ...
-.map(aster.dest('dist'))
+aster.watch(['src/**/*.js', 'src/**/*.coffee', 'src/**/*.jsx'])
+.throttle(500)
+.map(changed(function (src) {
+  return src.map(equery({
+    'if ($cond) return $expr1; else return $expr2;':
+      'return <%= cond %> ? <%= expr1 %> : <%= expr2 %>'
+  }));
+}))
+.map(concat('built.js'))
+.map(umd({exports: 'superLib'}))
+.map(aster.dest('dist', {sourceMap: true}))
 .subscribe(aster.runner);
 ```
 
