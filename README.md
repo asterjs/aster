@@ -8,28 +8,35 @@
 
 <h1 align="center">aster - AST-based code builder</h1>
 
-## What's this
+## What's that
 
-aster is reactive builder specialized for code processing. This allows you to make JavaScript code builds faster, more reliable and always supporting source maps whatever plugins you use.
+aster is reactive builder specialized for code processing and transformations. It's built with debugging in mind and makes building JavaScript code more reliable and faster.
 
-Source maps are really great for being able to debug your original code on production, but using them isn't possible in any of existing build systems whenever you have at least one plugin in your build pipeline that doesn't support emitting them or even consuming from previous step; some plugins even treat code as simple strings discarding it's inner logic and structure.
+## Why one more
 
-Think of aster for JS as of [rework](https://github.com/reworkcss/rework) for CSS.
+Source maps are a great invention that is meant to simplify life by allowing developers to debug the original code (the one that they actually write, whatever language it is) on production.
 
-## Usage with generic build systems
+However, using them is pretty hard in any of existing build systems whenever you have at least one plugin in your build pipeline - and you most likely do - that doesn't support emitting them or even consuming from previous step; some plugins even treat code as simple strings discarding all it's inner logic and structure.
 
-aster doesn't try to fight with your favorite build system. It has only one specific area that it does well - and it's code processing. Everything else (CSS, images, publishing to CDN, etc.) is left for more generic builders, and you can use them together.
+Your code isn't just a string. It has a soul and rich inner world and aster is built to treat it like that. As result, it provides complex yet easy and fast transformations that are transparent for browser debugger out of the box.
+
+You can think of aster for JS as of [rework](https://github.com/reworkcss/rework) for CSS.
+
+## But I like X builder! Should I throw it out?
+
+Definitely no! aster doesn't try to fight your favorite build system. It has only one specific area that it's exceptionally good at - code processing. Everything else (CSS, images, publishing to CDN, etc.) is left for generic builders, and you can use them together.
 
 Currently there are following bindings:
+
  * [grunt-aster](https://github.com/asterjs/grunt-aster) - binding for [Grunt](http://gruntjs.com/) JavaScript Task Runner.
  * [gulp-aster](https://github.com/asterjs/gulp-aster) - binding for [Gulp](http://gulpjs.com/) streaming build system.
  * ...more to come!
 
-Also, you can define aster pipeline as custom task in any existing build system since aster uses [RxJS](http://reactive-extensions.github.io/RxJS/) which is completely interoperable with events, streams, promises, callbacks and any other asynchronous primitives and patterns.
+If you wish, you can define aster pipeline as custom task in any existing build system on your own since aster uses [RxJS](http://reactive-extensions.github.io/RxJS/) under the hood, which is interoperable with events, streams, promises, callbacks and any other asynchronous primitives and patterns out of the box.
 
 ## API
 
-aster is centralized API for core parts which are published as separate modules (check out their documentations for details):
+aster is completely modular and main package is just a centralized API wrapper for core parts published as separate modules (check out their documentations for details):
 
 * [aster.src](https://github.com/asterjs/aster-src) - Single-pass source files reader.
 * [aster.watch](https://github.com/asterjs/aster-watch) - Continuous source files reader.
@@ -56,6 +63,8 @@ aster.src('src/**/*.js')
 .map(aster.dest('dist'))
 .subscribe(aster.runner);
 ```
+
+aster doesn't provide task runner - npm is already good one, and we don't want to create one more bicycle. You can simply define every needed task as separate script, or use aster as part of exising builder as mentioned before.
 
 ## License
 
