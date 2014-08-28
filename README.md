@@ -1,12 +1,10 @@
-# aster
+# aster - AST-based code builder
 [![NPM version][npm-image]][npm-url]
 [![Build Status][travis-image]][travis-url]
 
 <p align="center">
   <img src="https://avatars2.githubusercontent.com/u/6579498?s=300" />
 </p>
-
-<h1 align="center">aster - AST-based code builder</h1>
 
 ## What's that
 
