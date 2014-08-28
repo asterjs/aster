@@ -36,6 +36,9 @@
 <p align="center">
   <img src="https://avatars2.githubusercontent.com/u/6579498?s=300"></p>
 
+<h1 align="center">
+<a name="aster---ast-based-code-builder" class="anchor" href="#aster---ast-based-code-builder"><span class="octicon octicon-link"></span></a>aster - AST-based code builder</h1>
+
 <h2>
 <a name="whats-that" class="anchor" href="#whats-that"><span class="octicon octicon-link"></span></a>What's that</h2>
 
@@ -89,15 +92,19 @@
 <pre lang="shell"><code>npm install --save-dev aster
 </code></pre>
 
-<p>Then, create build script and use it:</p>
+<p>Then, create build script and use it. Example (<code>require</code>s omitted):</p>
 
-<div class="highlight highlight-javascript"><pre><span class="kd">var</span> <span class="nx">aster</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'aster'</span><span class="p">);</span>
-
-<span class="nx">aster</span><span class="p">.</span><span class="nx">src</span><span class="p">(</span><span class="s1">'src/**/*.js'</span><span class="p">)</span>
-<span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">plugin1</span><span class="p">(</span><span class="cm">/* ... */</span><span class="p">))</span>
-<span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">plugin2</span><span class="p">(</span><span class="cm">/* ... */</span><span class="p">))</span>
-<span class="c1">// ...</span>
-<span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">aster</span><span class="p">.</span><span class="nx">dest</span><span class="p">(</span><span class="s1">'dist'</span><span class="p">))</span>
+<div class="highlight highlight-javascript"><pre><span class="nx">aster</span><span class="p">.</span><span class="nx">watch</span><span class="p">([</span><span class="s1">'src/**/*.js'</span><span class="p">,</span> <span class="s1">'src/**/*.coffee'</span><span class="p">,</span> <span class="s1">'src/**/*.jsx'</span><span class="p">])</span>
+<span class="p">.</span><span class="nx">throttle</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span>
+<span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">changed</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">src</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="nx">src</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">equery</span><span class="p">({</span>
+    <span class="s1">'if ($cond) return $expr1; else return $expr2;'</span><span class="o">:</span>
+      <span class="s1">'return &lt;%= cond %&gt; ? &lt;%= expr1 %&gt; : &lt;%= expr2 %&gt;'</span>
+  <span class="p">}));</span>
+<span class="p">}))</span>
+<span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">concat</span><span class="p">(</span><span class="s1">'built.js'</span><span class="p">))</span>
+<span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">umd</span><span class="p">({</span><span class="nx">exports</span><span class="o">:</span> <span class="s1">'superLib'</span><span class="p">}))</span>
+<span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">aster</span><span class="p">.</span><span class="nx">dest</span><span class="p">(</span><span class="s1">'dist'</span><span class="p">,</span> <span class="p">{</span><span class="nx">sourceMap</span><span class="o">:</span> <span class="kc">true</span><span class="p">}))</span>
 <span class="p">.</span><span class="nx">subscribe</span><span class="p">(</span><span class="nx">aster</span><span class="p">.</span><span class="nx">runner</span><span class="p">);</span>
 </pre></div>
 
