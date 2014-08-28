@@ -51,11 +51,9 @@ First, install `aster` as a development dependency:
 npm install --save-dev aster
 ```
 
-Then, create build script and use it. Example:
+Then, create build script and use it. Example (`require`s omitted):
 
 ```javascript
-var aster = require('aster');
-
 aster.watch(['src/**/*.js', 'src/**/*.coffee', 'src/**/*.jsx'])
 .throttle(500)
 .map(changed(function (src) {
