@@ -70,6 +70,12 @@ aster.watch(['src/**/*.js', 'src/**/*.coffee', 'src/**/*.jsx'])
 
 aster doesn't provide task runner - npm is already good one, and we don't want to create one more bicycle. You can simply define every needed task as separate script, or use aster as part of exising builder as mentioned before.
 
+## Creating plugins
+
+Check out aster's [Yeoman generator](https://github.com/asterjs/generator-aster).
+
+It automizes the process of creating basic skeleton and Github repo for your plugin in few easy steps. When created, you just need to modify [`index.js`](https://github.com/asterjs/generator-aster/blob/master/app/templates/index.js) and [`test.js`](https://github.com/asterjs/generator-aster/blob/master/app/templates/test/test.js) files to reflect your intended plugin's functionality (detailed hints included right in code).
+
 ## License
 
 [MIT License](http://en.wikipedia.org/wiki/MIT_License)
