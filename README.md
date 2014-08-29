@@ -68,7 +68,7 @@ aster.watch(['src/**/*.js', 'src/**/*.coffee', 'src/**/*.jsx'])
 .subscribe(aster.runner);
 ```
 
-aster doesn't provide task runner - npm is already good one, and we don't want to create one more bicycle. You can simply define every needed task as separate script, or use aster as part of exising builder as mentioned before.
+aster doesn't provide task runner - npm is already good one, and we don't want to create one more bicycle. You can simply define every needed task as separate script, or use aster as part of existing builder as mentioned before.
 
 ## Creating plugins
 
